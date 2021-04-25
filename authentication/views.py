@@ -48,7 +48,12 @@ class EmailValidationView(View):
         return JsonResponse({'email_valid':True})        
 
 
-
+class EmailThreading(threading.Thread):
+    def __init__(self,email):
+        self.email = email
+        threading.Thread.__init__(self)
+    def run(self):
+        self.email.send(fail_silently = False)
 class RegisterView(View):
     def get(self,request):
         return render(request,'authentication/register.html')
@@ -86,7 +91,7 @@ class RegisterView(View):
                     [email],
 
                     )
-                    email.send(fail_silently=False)
+                    EmailThreading(email).start()
                     messages.success(request,'Account succesfully created')   
  
         return render(request,'authentication/register.html')
@@ -182,7 +187,7 @@ class ResetPasswordView(View):
             'noreply@activate.com',
             [email],
             )
-            email.send(fail_silently=False)
+            EmailThreading(email).start()
 
         messages.success(request,"We've sent you an email to reset your password")
         return redirect('login')
