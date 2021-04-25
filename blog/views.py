@@ -30,7 +30,7 @@ class BlogPostDetailView(DetailView):
     template_name = "blogPost.html"  
 
 
-@method_decorator(login_required(login_url="authentication/login"), name='dispatch')
+# @method_decorator(login_required(login_url="authentication/login"), name='dispatch')
 class CommenSectionView(ListView):
     def get(self,request):
         return render(request,"comments.html")
@@ -42,7 +42,7 @@ class CommenSectionView(ListView):
             messages.error(request,"Please add a comment")
             return render(request,"comments.html")
         if not date:
-            messages.error(request,"Date field cannot be empty")
+            messages.error(request,"Date field cannot be empty") 
             return render(request,"comments.html")    
         Comments.objects.create(comment=comment, date=date,owner =request.user)
         messages.success(request,"Your comment was posted")
