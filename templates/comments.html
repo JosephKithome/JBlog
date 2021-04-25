@@ -13,6 +13,7 @@
       <div class="card">
         <div class="card-body">
         <h1>Add comment Here </h1>
+        {% if user.is_authenticated %}
         <form action="#" method="post">
          {% include 'common/messages.html' %}
           {% csrf_token %}
@@ -28,6 +29,7 @@
           <input type="submit" value="Submit" class="btn btn-secondary  btn-secondary-sm">
 
           </form>
+          {% endif %}
         </div>        
     
       </div>
