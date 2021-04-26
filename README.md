@@ -33,7 +33,7 @@ pip install - r requirements.txt
 pip install 
 "
 ```
-export SECRET_KEY='django-insecure-859e&hhj95l+0pcr0x=%k#j9z$4p18!+a4=d6byun6*@ri076v'
+export SECRET_KEY=''
 export DEBUG=True
 export DB_NAME=,
 export DB_USER=,
