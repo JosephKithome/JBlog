@@ -61,3 +61,5 @@ python manage.py runserver
 ```
 * psycopg2
 
+Use this link to access the deployed app on heroku
+https://josephblog.herokuapp.com/
