@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blogdb',
+        'NAME': os.getenv("DB_NAME"),
         'USER': 'postgres',
         'PASSWORD': '2039',
-        'HOST': 'localhost'
+        'HOST': os.getenv("DB_HOST")
     }
 }
 
@@ -141,9 +141,11 @@ MESSAGE_TAGS ={
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'tutstester@gmail.com'
-EMAIL_HOST_PASSWORD = 'awesome2020'
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+
+
 django_heroku.settings(locals())
