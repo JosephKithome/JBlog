@@ -33,6 +33,7 @@ class BlogPostDetailView(DetailView):
 # @method_decorator(login_required(login_url="authentication/login"), name='dispatch')
 class CommenSectionView(ListView):
     def get(self,request):
+        messages.warning(request,"you must be logged in to comment")
         return render(request,"comments.html")
     def post(self,request):
         comment = request.POST['comment']
