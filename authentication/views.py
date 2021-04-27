@@ -54,6 +54,7 @@ class EmailThreading(threading.Thread):
         threading.Thread.__init__(self)
     def run(self):
         self.email.send(fail_silently = False)
+
 class RegisterView(View):
     def get(self,request):
         return render(request,'authentication/register.html')
@@ -92,7 +93,8 @@ class RegisterView(View):
 
                     )
                     EmailThreading(email).start()
-                    messages.success(request,'Account succesfully created')   
+                    messages.success(request,'Account succesfully created')  
+                    return redirect('login') 
  
         return render(request,'authentication/register.html')
 
